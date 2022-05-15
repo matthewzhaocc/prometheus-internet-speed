@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 30s
+
+scrape_configs: 
+  - job_name: internet_speed
+    scrape_interval: 150s
+    static_configs:
+      - targets: ['speedtest_collector:3000']
+    scrape_timeout: 120s
