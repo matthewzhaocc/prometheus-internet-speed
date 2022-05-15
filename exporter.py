@@ -14,14 +14,14 @@ class InternetPerformanceCollector(object):
         pass
 
     def collect(self) -> typing.Generator[GaugeMetricFamily, None, None]:
-        metrics = self.get_metrics()
+        metrics = InternetPerformanceCollector.get_metrics()
         download = GaugeMetricFamily(
-            'download_speed', 'The download speed of your connection (in gigabits)', self.toGigabit(metrics['download']))
+            'download_speed', 'The download speed of your connection (in gigabits)', InternetPerformanceCollector.toGigabit(metrics['download']))
 
         yield download
 
         upload = GaugeMetricFamily(
-            'upload_speed', 'The upload speed of your connection (in gigabits)', self.toGigabit(
+            'upload_speed', 'The upload speed of your connection (in gigabits)', InternetPerformanceCollector.toGigabit(
                 metrics['upload'])
         )
 
