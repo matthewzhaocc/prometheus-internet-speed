@@ -16,12 +16,12 @@ class InternetPerformanceCollector(object):
     def collect(self) -> typing.Generator[GaugeMetricFamily, None, None]:
         metrics = InternetPerformanceCollector.get_metrics()
         download = GaugeMetricFamily(
-            'download_speed', 'The download speed of your connection (in gigabits)', InternetPerformanceCollector.toGigabit(metrics['download']))
+            'download_speed', 'The download speed of your connection (in gigabits)', InternetPerformanceCollector.to_gigabit(metrics['download']))
 
         yield download
 
         upload = GaugeMetricFamily(
-            'upload_speed', 'The upload speed of your connection (in gigabits)', InternetPerformanceCollector.toGigabit(
+            'upload_speed', 'The upload speed of your connection (in gigabits)', InternetPerformanceCollector.to_gigabit(
                 metrics['upload'])
         )
 
@@ -34,7 +34,7 @@ class InternetPerformanceCollector(object):
         yield ping
 
     @staticmethod
-    def toGigabit(bit: float) -> float:
+    def to_gigabit(bit: float) -> float:
         return bit / 1_000_000_000
 
     @staticmethod
