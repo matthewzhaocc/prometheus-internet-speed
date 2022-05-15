@@ -9,7 +9,7 @@ from prometheus_client import start_http_server
 st = speedtest.Speedtest()
 
 
-class InternetPerformanceCollector(object):
+class InternetPerformanceCollector:
     def __init__(self):
         pass
 
@@ -47,7 +47,7 @@ class InternetPerformanceCollector(object):
 
 
 def get_port() -> int:
-    if (port := os.environ.get('PORT') != None):
+    if (port := os.environ.get('PORT') is not None):
         return int(port)
 
     return 3000
